@@ -46,3 +46,28 @@
 
     <button type="submit">Ekle</button>
 </form>
+
+<hr>
+
+<h4>Yeni Kategori Ekle (NgModel)</h4>
+<!-- 
+    [(ngModel)] ile çift yönlü veri bağlama yapıyoruz.
+    input'a yazdıkça createCategoryModel içindeki ilgili property güncellenir.
+    code tarafında createCategoryModel değişirse input da otomatik güncellenir.
+    template-driven form kuralı: ngmodel kullanırken name attribute zorunludur.
+-->
+
+<form (submit)="addCategory($event)">
+
+    <input type="text" placeholder="Kategori Adı" [(ngModel)]="createCategoryModel.categoryName" name="categoryName">
+    <br>
+    
+    <input type="text" placeholder="Açıklama" [(ngModel)]="createCategoryModel.description" name="description">
+    <br>
+
+    <button type="submit">Ekle</button>
+</form>
+
+<!-- Ekranda canlı model değerleri -->
+ <p>Canlı Model Değerleri:</p>
+<pre>{{ createCategoryModel.categoryName }} | {{ createCategoryModel.description }}</pre>

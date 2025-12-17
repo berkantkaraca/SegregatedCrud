@@ -64,9 +64,13 @@ export class CategoryOperation {
     // const body = this.createCategoryForm();
     const body = this.createCategoryPatchForm();
 
+    //ngModel için
+    const body2: CategoryRequestModel = this.createCategoryModel;
+    
+
     try {
       const message = await lastValueFrom(
-        this.http.post('http://localhost:5231/api/Categories', body, { responseType: 'text' })
+        this.http.post('http://localhost:5231/api/Categories', body2, { responseType: 'text' })
       );
 
       console.log("Api mesajı:", message);
@@ -77,6 +81,9 @@ export class CategoryOperation {
         categoryName: '',
         description: ''
       });
+
+      this.createCategoryModel.categoryName = '';
+      this.createCategoryModel.description = '';
 
     } catch (error) {
       console.log(error);
@@ -100,7 +107,11 @@ export class CategoryOperation {
   //#endregion
 
   //#region ngModel
-  
+  protected createCategoryModel: CategoryRequestModel = {
+    categoryName: '',
+    description: ''
+  };
+  //#endregion
 }
 
 
