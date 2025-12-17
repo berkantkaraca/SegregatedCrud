@@ -1,0 +1,48 @@
+<table>
+    <tr>
+        <th>Id</th>
+        <th>İsim</th>
+        <th>Açıklama</th>
+        <th>İşlemler</th>
+    </tr>
+
+    @for(category of categories(); track category.id) {
+    <tr>
+        <td>{{category.id}}</td>
+        <td>{{category.categoryName}}</td>
+        <td>{{category.description}}</td>
+        <td>
+            <!-- <button (click)="editCategory(category.id)">Düzenle</button>
+                <button (click)="deleteCategory(category.id)">Sil</button> -->
+        </td>
+    </tr>
+    }
+</table>
+
+<hr>
+
+<h4>Yeni Kategori Ekle</h4>
+<form (submit)="addCategory($event)">
+
+    <input type="text" placeholder="Kategori Adı" (input)="onCreateChange('categoryName', $event)">
+    <br>
+    
+    <input type="text" placeholder="Açıklama" (input)="onCreateChange('description', $event)">
+    <br>
+    <button type="submit">Ekle</button>
+</form>
+
+<hr>
+
+<h4>Yeni Kategori Ekle (Patch)</h4>
+
+<form (submit)="addCategory($event)">
+
+    <input type="text" placeholder="Kategori Adı" #isim (input)="patchCreateForm({categoryName : isim.value})">
+    <br>
+    
+    <input type="text" placeholder="Açıklama" #aciklama (input)="patchCreateForm({description : aciklama.value})">
+    <br>
+
+    <button type="submit">Ekle</button>
+</form>
